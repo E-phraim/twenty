@@ -15,4 +15,6 @@ func Routes(router *gin.Engine) {
 	routes.POST("/article", handlers.CreateArticle)
 	routes.DELETE("/article/:id", handlers.DeleteArticle)
 	routes.PUT("/article/:id", handlers.UpdateArticle)
+
+	routes.POST("/blogs/aggregations", handlers.AggregateBlogs)
 }

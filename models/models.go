@@ -1,18 +1,22 @@
 package models
 
-import "time"
+import (
+	"time"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 type Blog struct {
-	ID        int       `json:"id"`
-	Title     string    `json:"title"`
-	Body      string    `json:"body"`
-	Author    string    `json:"author"`
-	CreatedAt time.Time `json:"created_at"`
-	UpdatedAt time.Time `json:"updated_at"`
+	ID        primitive.ObjectID `bson:"_id,omitempty" json:"id"`
+	Title     string             `bson:"title" json:"title"`
+	Body      string             `bson:"body" json:"body" `
+	Author    string             `bson:"author" json:"author"`
+	CreatedAt time.Time          `bson:"created_at" json:"created_at"`
+	UpdatedAt time.Time          `bson:"updated_at" json:"updated_at"`
 }
 
-type AddBlog struct{
-	Title     string    `json:"title"`
-	Body      string    `json:"body"`
-	Author    string    `json:"author"`
+type AddBlog struct {
+	Title  string `bson:"title" json:"title" validate:"required"`
+	Body   string `bson:"body" json:"body" validate:"required"`
+	Author string `bson:"author" json:"author" validate:"required"`
 }

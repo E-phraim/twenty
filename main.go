@@ -1,14 +1,23 @@
 package main
 
-import "github.com/gin-gonic/gin"
+import (
+	"twenty/db"
+	"twenty/routes"
+
+	"github.com/gin-gonic/gin"
+)
 
 func main() {
 	engine := gin.Default()
-	engine.GET("/", func(c *gin.Context) {
+	engine.GET("/api/v1/", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"message": "Hi I am Twenty; How do i help ?",
 		})
 	})
+
+	db.ConnectMongoDB()
+
+	routes.Routes(engine)
 
 	engine.Run()
 
